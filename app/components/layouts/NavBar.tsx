@@ -17,7 +17,7 @@ export default function NavBar() {
   ];
 
   return (
-    <nav className="w-full bg-white relative border-b border-[#70707040]">
+    <nav className="w-full bg-white border-b border-[#70707040] sticky top-0 z-99">
       <div className="absolute top-0 left-0 w-full h-1.5 bg-linear-to-r from-[#29B1BE] to-[#6B79B9]" />
       <div className="h-[5.31rem] flex justify-between items-center px-4 sm:px-6 lg:px-20">
         <button
