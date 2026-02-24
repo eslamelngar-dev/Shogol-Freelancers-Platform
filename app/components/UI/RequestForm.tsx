@@ -47,7 +47,7 @@ export default function RequestForm() {
       <div className="w-full flex justify-center my-2 md:my-3 items-center">
         <button
           onClick={handleSendRequest}
-          className="bg-[#1eaaad] w-full sm:w-[12rem] md:w-[15.43rem] h-10 md:h-[3.43rem] text-white rounded-xl md:rounded-2xl cursor-pointer text-sm md:text-base hover:bg-[#179a9d] transition-colors flex items-center justify-center gap-2"
+          className="bg-[#1eaaad] w-full sm:w-48 md:w-[15.43rem] h-10 md:h-[3.43rem] text-white rounded-xl md:rounded-2xl cursor-pointer text-sm md:text-base hover:bg-[#179a9d] transition-colors flex items-center justify-center gap-2"
         >
           {isLoading ? (
             <>
