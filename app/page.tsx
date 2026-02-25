@@ -45,7 +45,7 @@ export default function Home() {
 
           <div className="flex justify-center mt-10">
             <Link href={`/services`}>
-              <button className="px-8 py-3 bg-[#1EAAAD] hover:bg-[#178a8d] text-white font-bold rounded-full transition-colors duration-300">
+              <button className="px-8 py-3 bg-[#1EAAAD] hover:bg-[#178a8d] text-white font-bold rounded-full transition-colors duration-300 cursor-pointer">
                 عرض جميع الخدمات
               </button>
             </Link>
