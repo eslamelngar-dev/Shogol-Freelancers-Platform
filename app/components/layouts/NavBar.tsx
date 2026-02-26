@@ -10,7 +10,7 @@ export default function NavBar() {
 
   const links = [
     { name: "الرئيسية", href: "/" },
-    { name: "الاعلانات", href: "/ads" },
+    { name: "الخدمات", href: "/services" },
     { name: "الطلبات", href: "/requests" },
     { name: "المشتغلين", href: "/freelancers" },
     { name: "تواصل معنا", href: "/contact" },
