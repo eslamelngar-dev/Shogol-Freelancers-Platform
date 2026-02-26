@@ -7,11 +7,19 @@ import CheckboxFilter from "../components/UI/CheckboxFilter";
 import { Services } from "../data/Services";
 import ServiceCard from "../components/UI/ServiceCard";
 import { Search } from "lucide-react";
+import RangeSlider from "../components/UI/RangeSlider";
 
 export default function ServicesPage() {
   const [query, setQuery] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
-  const [value, setValue] = useState<number|null>(null);
+  const [value, setValue] = useState<number | null>(null);
+
+  const MIN_PRICE = Math.min(...Services.map((s) => s.packages[0].price));
+  const MAX_PRICE = Math.max(...Services.map((s) => s.packages[0].price));
+  const [priceRange, setPriceRange] = useState<number[]>([
+    MIN_PRICE,
+    MAX_PRICE,
+  ]);
 
   const filteredServices = Services.filter((service) => {
     const matchesQuery = service.title
@@ -20,9 +28,10 @@ export default function ServicesPage() {
     const matchesCategory =
       selectedCategories.length === 0 ||
       selectedCategories.includes(service.categorysId);
-    const matchesRating =
-    service.avgRating === value || value === null
-    return matchesQuery && matchesCategory && matchesRating
+    const matchesRating = service.avgRating === value || value === null;
+    const matchesPrice = 
+    service.packages[0].price >= priceRange[0] && service.packages[0].price <= priceRange[1]
+    return matchesQuery && matchesCategory && matchesRating && matchesPrice
   });
 
   return (
@@ -74,6 +83,20 @@ export default function ServicesPage() {
                   setValue(newValue);
                 }}
               />
+            </div>
+
+            <hr className="border-gray-100" />
+
+            <div>
+              <p className="font-bold text-gray-700">السعر</p>
+              <div className="w-full">
+                <RangeSlider
+                  min={MIN_PRICE}
+                  max={MAX_PRICE}
+                  priceRange={priceRange}
+                  setPriceRange={setPriceRange}
+                />
+              </div>
             </div>
           </div>
         </aside>
