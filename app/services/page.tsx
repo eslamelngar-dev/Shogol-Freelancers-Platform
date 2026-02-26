@@ -1,11 +1,18 @@
+"use client"
 import { Container, Grid } from "@mui/material";
 import BreadCramp from "../components/UI/BreadCramp";
 import SearchBar from "../components/UI/SearchBar";
 import { Services } from "../data/Services";
 import ServiceCard from "../components/UI/ServiceCard";
 import { Categories } from "../data/Categories";
+import { useState } from "react";
 
 export default function ServicesPage() {
+  const [query,setQuery] = useState("")
+  const filteredServices = Services.filter((service) =>
+  service.title.toLowerCase().includes(query.toLowerCase())
+  )
+  
   return (
     <Container maxWidth="lg">
       <BreadCramp
@@ -20,7 +27,7 @@ export default function ServicesPage() {
           <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col gap-4 sticky top-4">
             <div>
               <p className="font-bold text-gray-700 mb-2">البحث باسم الخدمة</p>
-              <SearchBar />
+              <SearchBar value={query} setQuery={setQuery}/>
             </div>
 
             <hr className="border-gray-100" />
@@ -47,7 +54,7 @@ export default function ServicesPage() {
         </aside>
         <div className="flex-1">
           <Grid container spacing={2}>
-            {Services.map((service) => (
+            {filteredServices.map((service) => (
               <Grid
                 key={service.id}
                 size={{
