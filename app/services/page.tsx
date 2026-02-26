@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Rating } from "@mui/material";
 import BreadCramp from "../components/UI/BreadCramp";
 import SearchBar from "../components/UI/SearchBar";
 import CheckboxFilter from "../components/UI/CheckboxFilter";
@@ -11,15 +11,20 @@ import { Search } from "lucide-react";
 export default function ServicesPage() {
   const [query, setQuery] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
+  const [value, setValue] = useState<number|null>(null);
 
   const filteredServices = Services.filter((service) => {
-    const matchesQuery = service.title.toLowerCase().includes(query.toLowerCase());
+    const matchesQuery = service.title
+      .toLowerCase()
+      .includes(query.toLowerCase());
     const matchesCategory =
       selectedCategories.length === 0 ||
       selectedCategories.includes(service.categorysId);
-    return matchesQuery && matchesCategory;
+    const matchesRating =
+    service.avgRating === value || value === null
+    return matchesQuery && matchesCategory && matchesRating
   });
-  
+
   return (
     <Container maxWidth="lg">
       <BreadCramp
@@ -52,8 +57,22 @@ export default function ServicesPage() {
                 )}
               </div>
               <CheckboxFilter
-              selected={selectedCategories}
-              setSelectedCategories={setSelectedCategories}
+                selected={selectedCategories}
+                setSelectedCategories={setSelectedCategories}
+              />
+            </div>
+
+            <hr className="border-gray-100" />
+
+            <div dir="ltr" className="w-full flex flex-col items-end">
+              <p className="font-bold text-gray-700">التقييم</p>
+
+              <Rating
+                name="simple-controlled"
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
               />
             </div>
           </div>
