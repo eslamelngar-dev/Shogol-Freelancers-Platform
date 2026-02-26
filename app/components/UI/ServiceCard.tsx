@@ -44,8 +44,8 @@ export default function ServiceCard({ service }: serviceCardProp) {
           <div className="flex items-center gap-2">
             <Avatar
               sx={{
-                width: 34,
-                height: 34,
+                width: 36,
+                height: 36,
                 fontSize: "1rem",
                 bgcolor: "#1eaaad",
                 fontWeight:800
