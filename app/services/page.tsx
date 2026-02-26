@@ -52,6 +52,8 @@ export default function ServicesPage() {
                 )}
               </div>
               <CheckboxFilter
+              selected={selectedCategories}
+              setSelectedCategories={setSelectedCategories}
               />
             </div>
           </div>
