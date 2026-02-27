@@ -116,7 +116,37 @@ export default function ServiceDetails() {
               </div>
             </div>
 
-            
+            <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+              <p className="text-black font-bold p-4 border-b border-gray-100">
+                معلومات
+              </p>
+              <div className="p-4 flex flex-col gap-3 text-sm text-gray-600">
+                <div className="flex justify-between">
+                  <span>متوسط الرد</span>
+                  <span className="font-bold text-gray-800">
+                    {service?.avgResponse} دقيقة
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>وقت التسليم</span>
+                  <span className="font-bold text-gray-800">
+                    {service?.DeliverTime} أيام
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>عدد الطلبات</span>
+                  <span className="font-bold text-gray-800">
+                    {service?.ordersCount} طلب
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>التقييم</span>
+                  <span className="font-bold text-gray-800">
+                    ⭐ {service?.avgRating}
+                  </span>
+                </div>
+              </div>
+            </div>
           </aside>
         </div>
       </Container>
