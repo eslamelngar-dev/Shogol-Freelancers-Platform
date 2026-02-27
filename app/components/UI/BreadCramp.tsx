@@ -2,7 +2,7 @@ import { ChevronLeft, Home } from "lucide-react";
 import Link from "next/link";
 
 interface BreadCrampLink {
-  title: string;
+  title: string|undefined;
   Link: string;
 }
 

@@ -8,6 +8,7 @@ import { Services } from "../data/Services";
 import ServiceCard from "../components/UI/ServiceCard";
 import { Search } from "lucide-react";
 import RangeSlider from "../components/UI/RangeSlider";
+import Link from "next/link";
 
 export default function ServicesPage() {
   const [query, setQuery] = useState("");
@@ -29,9 +30,10 @@ export default function ServicesPage() {
       selectedCategories.length === 0 ||
       selectedCategories.includes(service.categorysId);
     const matchesRating = service.avgRating === value || value === null;
-    const matchesPrice = 
-    service.packages[0].price >= priceRange[0] && service.packages[0].price <= priceRange[1]
-    return matchesQuery && matchesCategory && matchesRating && matchesPrice
+    const matchesPrice =
+      service.packages[0].price >= priceRange[0] &&
+      service.packages[0].price <= priceRange[1];
+    return matchesQuery && matchesCategory && matchesRating && matchesPrice;
   });
 
   return (
@@ -82,6 +84,7 @@ export default function ServicesPage() {
                 onChange={(event, newValue) => {
                   setValue(newValue);
                 }}
+                precision={0.5}
               />
             </div>
 
@@ -106,7 +109,9 @@ export default function ServicesPage() {
             <Grid container spacing={2}>
               {filteredServices.map((service) => (
                 <Grid key={service.id} size={{ xs: 12, sm: 6, lg: 4 }}>
-                  <ServiceCard service={service} />
+                  <Link href={`/services/${service.id}`}>
+                    <ServiceCard service={service} />
+                  </Link>
                 </Grid>
               ))}
             </Grid>
