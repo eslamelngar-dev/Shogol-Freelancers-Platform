@@ -4,7 +4,7 @@ import Carousel from "@/app/components/UI/Carousel";
 import ServiceCard from "@/app/components/UI/ServiceCard";
 import { Services } from "@/app/data/Services";
 import { Container, Grid } from "@mui/material";
-import { Star } from "lucide-react";
+import { Clock9, Star } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { useParams } from "next/navigation";
@@ -74,7 +74,49 @@ export default function ServiceDetails() {
           </div>
 
           <aside className="w-full lg:w-80 shrink-0 flex flex-col gap-4">
-            <div className="bg-white"></div>
+            <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+              <p className="text-black font-bold p-4 border-b border-gray-100">
+                شراء الخدمة
+              </p>
+              <div className="flex flex-col divide-y divide-gray-100">
+                {service?.packages.map((pkg) => (
+                  <div key={pkg.tier} className="p-4 flex flex-col gap-3">
+                    <p className="text-base font-bold text-gray-800">
+                      {pkg.tier === "basic"
+                        ? "أساسي"
+                        : pkg.tier === "standard"
+                          ? "متوسط"
+                          : "مميز"}
+                    </p>
+
+                    <ul className="flex flex-col gap-1">
+                      {pkg.features.map((feature) => (
+                        <li
+                          key={feature}
+                          className="flex items-center gap-2 text-sm text-gray-600"
+                        >
+                          <span className="text-[#1EAAAD] font-bold">✓</span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="flex items-center justify-between text-sm text-[#777777]">
+                      <p className="flex items-center gap-1 font-bold text-[#1EAAAD]">
+                        ${pkg.price}
+                        <span className="text-gray-400 font-normal">دولار</span>
+                      </p>
+                      <p className="flex items-center gap-1">
+                        <Clock9 size={15} />
+                        {pkg.deliveryDays} أيام
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            
           </aside>
         </div>
       </Container>
