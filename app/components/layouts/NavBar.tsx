@@ -46,9 +46,12 @@ export default function NavBar() {
 
         <div className="flex items-center gap-2 sm:gap-5">
           <div className="flex gap-2 sm:gap-3">
+            <Link href={`/chat`}>
             <button className="w-10 h-[2.81rem] sm:h-[2.81rem] bg-[#e5ebee] hover:bg-[#d5dbde] transition flex justify-center items-center rounded-xl cursor-pointer">
               <MessageSquareText color="#31b0b3" size={20} />
             </button>
+            </Link>
+            
           </div>
 
           <div className="hidden sm:flex items-center gap-5">
