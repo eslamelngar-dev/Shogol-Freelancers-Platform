@@ -1,5 +1,7 @@
 "use client";
 import BreadCramp from "@/app/components/UI/BreadCramp";
+import OfferCard from "@/app/components/UI/OfferCard";
+import { Offers } from "@/app/data/Offers";
 import { Requests } from "@/app/data/Request";
 import { Container } from "@mui/material";
 import { Clock, DollarSign, Tag, MessageCircle, Users } from "lucide-react";
@@ -8,6 +10,8 @@ import { useParams } from "next/navigation";
 export default function RequestDetails() {
   const { id } = useParams();
   const request = Requests.find((r) => r.id === Number(id));
+  const requestOffers = Offers.filter((o) => o.requestId === request?.id)
+
 
   return (
     <div className="bg-[#f1f1f1] min-h-screen">
@@ -73,6 +77,20 @@ export default function RequestDetails() {
                   >
                     {tag}
                   </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl p-5 shadow-sm flex flex-col gap-3">
+              <p className="font-bold text-gray-800 flex items-center gap-2">
+                العروض المقدمة
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {requestOffers.map((offer) => (
+                  <OfferCard
+                  key={offer.id}
+                  offer={offer}
+                  />
                 ))}
               </div>
             </div>
