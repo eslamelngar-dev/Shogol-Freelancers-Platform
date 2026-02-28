@@ -13,7 +13,7 @@ import { useParams } from "next/navigation";
 export default function ServiceDetails() {
   const { id } = useParams();
   const service = Services.find((s) => s.id === Number(id));
-  const freelancer = Freelancers.find((f) => f.id === service?.freelancerId); // ✅
+  const freelancer = Freelancers.find((f) => f.id === service?.freelancerId);
 
   const [randomServices] = useState(() => {
     const filtered = Services.filter((s) => s.id !== Number(id));

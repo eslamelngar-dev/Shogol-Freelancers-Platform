@@ -37,7 +37,7 @@ export default function FreelancersPage() {
       <BreadCramp
         Links={[
           { title: "الرئيسية", Link: "/" },
-          { title: "المستقلون", Link: "/freelancers" },
+          { title: "المشتغلين", Link: "/freelancers" },
         ]}
       />
 
