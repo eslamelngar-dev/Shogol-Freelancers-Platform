@@ -52,7 +52,7 @@ export default function NavBar() {
           </div>
 
           <div className="hidden sm:flex items-center gap-5">
-            <Link href={`/login/register`}>
+            <Link href={`/register`}>
               <button className="bg-[#1EAAAD] text-white rounded-xl w-28 md:w-[10.06rem] h-[2.81rem] hover:bg-[#189799] cursor-pointer transition duration-200 text-sm md:text-base">
                 كن مشتغل
               </button>
@@ -92,7 +92,7 @@ export default function NavBar() {
           ))}
 
           <div className="sm:hidden flex flex-col gap-2 mt-2 border-t border-[#70707020] pt-4">
-            <Link href={`/login/register`}>
+            <Link href={`/register`}>
               <button className="bg-[#1EAAAD] text-white rounded-xl w-full h-[2.81rem] hover:bg-[#189799] cursor-pointer transition duration-200">
                 كن مشتغل
               </button>

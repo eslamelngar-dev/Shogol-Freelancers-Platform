@@ -47,7 +47,7 @@ export default function LoginPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="ادخل كلمة المرور"
                 className="flex-1 py-3 px-2 text-sm outline-none"
               />
             </div>
