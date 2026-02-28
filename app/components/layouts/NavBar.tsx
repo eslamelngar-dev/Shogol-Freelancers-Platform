@@ -27,9 +27,9 @@ export default function NavBar() {
         </button>
         <div className="hidden lg:flex gap-6 xl:gap-15 items-center">
           <Link href={`/`} className="no-underline">
-              <h2 className="text-[2rem] font-medium">
-                شغ<span className="text-[#1EAAAD]">ل</span>
-              </h2>
+            <h2 className="text-[2rem] font-medium">
+              شغ<span className="text-[#1EAAAD]">ل</span>
+            </h2>
           </Link>
           {links.map((link) => (
             <Link key={link.href} href={link.href} className="no-underline">
@@ -52,12 +52,16 @@ export default function NavBar() {
           </div>
 
           <div className="hidden sm:flex items-center gap-5">
-            <button className="bg-[#1EAAAD] text-white rounded-xl w-28 md:w-[10.06rem] h-[2.81rem] hover:bg-[#189799] cursor-pointer transition duration-200 text-sm md:text-base">
-              كن مشتغل
-            </button>
-            <button className="text-[#1EAAAD] bg-white w-28w-[10.06rem] h-[2.81rem] hover:text-[#189799] cursor-pointer transition duration-200 text-sm md:text-base">
-              تسجيل الدخول
-            </button>
+            <Link href={`/login/register`}>
+              <button className="bg-[#1EAAAD] text-white rounded-xl w-28 md:w-[10.06rem] h-[2.81rem] hover:bg-[#189799] cursor-pointer transition duration-200 text-sm md:text-base">
+                كن مشتغل
+              </button>
+            </Link>
+            <Link href={`/login`}>
+              <button className="text-[#1EAAAD] bg-white w-28w-[10.06rem] h-[2.81rem] hover:text-[#189799] cursor-pointer transition duration-200 text-sm md:text-base">
+                تسجيل الدخول
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -88,12 +92,16 @@ export default function NavBar() {
           ))}
 
           <div className="sm:hidden flex flex-col gap-2 mt-2 border-t border-[#70707020] pt-4">
-            <button className="bg-[#1EAAAD] text-white rounded-xl w-full h-[2.81rem] hover:bg-[#189799] cursor-pointer transition duration-200">
-              كن مشتغل
-            </button>
-            <button className="text-[#1EAAAD] bg-white border border-[#1EAAAD] rounded-xl w-full h-[2.81rem] hover:text-[#189799] cursor-pointer transition duration-200">
-              تسجيل الدخول
-            </button>
+            <Link href={`/login/register`}>
+              <button className="bg-[#1EAAAD] text-white rounded-xl w-full h-[2.81rem] hover:bg-[#189799] cursor-pointer transition duration-200">
+                كن مشتغل
+              </button>
+            </Link>
+            <Link href={`/login`}>
+              <button className="text-[#1EAAAD] bg-white border border-[#1EAAAD] rounded-xl w-full h-[2.81rem] hover:text-[#189799] cursor-pointer transition duration-200">
+                تسجيل الدخول
+              </button>
+            </Link>
           </div>
         </div>
       </div>
