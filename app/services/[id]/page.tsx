@@ -2,8 +2,9 @@
 import BreadCramp from "@/app/components/UI/BreadCramp";
 import Carousel from "@/app/components/UI/Carousel";
 import ServiceCard from "@/app/components/UI/ServiceCard";
+import { Freelancers } from "@/app/data/Freelancers";
 import { Services } from "@/app/data/Services";
-import { Container, Grid } from "@mui/material";
+import { Avatar, Container, Grid } from "@mui/material";
 import { Clock9, Star } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -12,6 +13,8 @@ import { useParams } from "next/navigation";
 export default function ServiceDetails() {
   const { id } = useParams();
   const service = Services.find((s) => s.id === Number(id));
+  const freelancer = Freelancers.find((f) => f.id === service?.freelancerId); // ✅
+
   const [randomServices] = useState(() => {
     const filtered = Services.filter((s) => s.id !== Number(id));
     return filtered.sort(() => Math.random() - 0.5).slice(0, 6);
@@ -74,6 +77,35 @@ export default function ServiceDetails() {
           </div>
 
           <aside className="w-full lg:w-80 shrink-0 flex flex-col gap-4">
+            <Link href={`/freelancers/${freelancer?.id}`}>
+              <div className="bg-white rounded-2xl p-4 shadow-sm flex items-center gap-3 hover:shadow-md transition duration-200">
+                <Avatar
+                  sx={{
+                    width: 48,
+                    height: 48,
+                    fontSize: "1.2rem",
+                    bgcolor: "#1EAAAD",
+                    fontWeight: 800,
+                    flexShrink: 0,
+                  }}
+                >
+                  {freelancer?.name.charAt(0).toUpperCase()}
+                </Avatar>
+                <div className="flex flex-col gap-0.5 flex-1">
+                  <p className="font-bold text-gray-800 text-sm">
+                    {freelancer?.name}
+                  </p>
+                  <p className="text-xs text-gray-400">{freelancer?.job}</p>
+                </div>
+                <div className="flex items-center gap-1 shrink-0">
+                  <Star size={13} className="text-yellow-400 fill-yellow-400" />
+                  <span className="text-sm font-bold text-gray-700">
+                    {freelancer?.rating}
+                  </span>
+                </div>
+              </div>
+            </Link>
+
             <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
               <p className="text-black font-bold p-4 border-b border-gray-100">
                 شراء الخدمة
@@ -88,7 +120,6 @@ export default function ServiceDetails() {
                           ? "متوسط"
                           : "مميز"}
                     </p>
-
                     <ul className="flex flex-col gap-1">
                       {pkg.features.map((feature) => (
                         <li
@@ -100,7 +131,6 @@ export default function ServiceDetails() {
                         </li>
                       ))}
                     </ul>
-
                     <div className="flex items-center justify-between text-sm text-[#777777]">
                       <p className="flex items-center gap-1 font-bold text-[#1EAAAD]">
                         ${pkg.price}
