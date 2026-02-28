@@ -1,5 +1,5 @@
 "use client";
-import { BellRing, Menu, MessageSquareText, X } from "lucide-react";
+import { Menu, MessageSquareText, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -13,7 +13,6 @@ export default function NavBar() {
     { name: "الخدمات", href: "/services" },
     { name: "الطلبات", href: "/requests" },
     { name: "المشتغلين", href: "/freelancers" },
-    { name: "تواصل معنا", href: "/contact" },
   ];
 
   return (
@@ -26,7 +25,12 @@ export default function NavBar() {
         >
           {isMenuOpen ? <X color="#31b0b3" /> : <Menu color="#31b0b3" />}
         </button>
-        <div className="hidden lg:flex gap-6 xl:gap-15">
+        <div className="hidden lg:flex gap-6 xl:gap-15 items-center">
+          <Link href={`/`} className="no-underline">
+              <h2 className="text-[2rem] font-medium">
+                شغ<span className="text-[#1EAAAD]">ل</span>
+              </h2>
+          </Link>
           {links.map((link) => (
             <Link key={link.href} href={link.href} className="no-underline">
               <p
@@ -44,9 +48,6 @@ export default function NavBar() {
           <div className="flex gap-2 sm:gap-3">
             <button className="w-10 h-[2.81rem] sm:h-[2.81rem] bg-[#e5ebee] hover:bg-[#d5dbde] transition flex justify-center items-center rounded-xl cursor-pointer">
               <MessageSquareText color="#31b0b3" size={20} />
-            </button>
-            <button className="w-10 h-[2.81rem] sm:h-[2.81rem] bg-[#e5ebee] hover:bg-[#d5dbde] transition flex justify-center items-center rounded-xl cursor-pointer">
-              <BellRing color="#31b0b3" size={20} />
             </button>
           </div>
 
