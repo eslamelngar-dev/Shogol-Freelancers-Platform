@@ -4,7 +4,7 @@ import { Container, Grid } from "@mui/material";
 import BreadCramp from "../components/UI/BreadCramp";
 import SearchBar from "../components/UI/SearchBar";
 import { Freelancers } from "../data/Freelancers";
-// import FreelancerCard from "../components/UI/FreelancerCard";
+import FreelancerCard from "../components/UI/FreelancerCard";
 import { Search } from "lucide-react";
 import RangeSlider from "../components/UI/RangeSlider";
 import Link from "next/link";
@@ -79,9 +79,9 @@ export default function FreelancersPage() {
           {filteredFreelancers.length > 0 ? (
             <Grid container spacing={2}>
               {filteredFreelancers.map((freelancer) => (
-                <Grid key={freelancer.id} size={{ xs: 12, sm: 6, lg: 4 }}>
+                <Grid key={freelancer.id} size={12}>
                   <Link href={`/freelancers/${freelancer.id}`}>
-                    {/* <FreelancerCard freelancer={freelancer} /> */}
+                    <FreelancerCard freelancer={freelancer} />
                   </Link>
                 </Grid>
               ))}
