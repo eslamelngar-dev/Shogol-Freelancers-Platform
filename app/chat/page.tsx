@@ -2,7 +2,7 @@
 import { Chats } from "@/app/data/Chats";
 import { Freelancers } from "@/app/data/Freelancers";
 import { Avatar } from "@mui/material";
-import { Send } from "lucide-react";
+import { MessagesSquare, Send } from "lucide-react";
 import { useState } from "react";
 
 const myId = 0;
@@ -17,6 +17,7 @@ export default function ChatPage() {
     const otherId = selectedChat?.participants.find((p) => p !== myId);
     return Freelancers.find((f) => f.id === otherId);
   };
+
   const sendMessage = () => {
     const newMessage = {
       id: messages.length,
@@ -149,7 +150,8 @@ export default function ChatPage() {
           </>
         ) : (
           <div className="flex-1 flex flex-col items-center justify-center text-gray-400 gap-3">
-            <p className="text-lg font-medium">اختر محادثة للبدء</p>
+            <MessagesSquare size={120}/>
+            <p className="text-lg font-medium py-1">اختر محادثة للبدء</p>
             <p className="text-sm">اضغط على أي محادثة من القائمة</p>
           </div>
         )}
