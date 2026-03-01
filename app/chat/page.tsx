@@ -2,7 +2,7 @@
 import { Chats } from "@/app/data/Chats";
 import { Freelancers } from "@/app/data/Freelancers";
 import { Avatar } from "@mui/material";
-import { MessagesSquare, Send } from "lucide-react";
+import { ArrowRight, MessagesSquare, Send } from "lucide-react";
 import { useState } from "react";
 
 const myId = 0;
@@ -13,12 +13,14 @@ export default function ChatPage() {
   const [selectedChatId, setSelectedChatId] = useState<number | null>(null);
   const selectedChat = allChats.find((c) => c.id === selectedChatId);
   const messages = selectedChat?.messages ?? [];
+
   const getOtherParticipant = (selectedChat: (typeof Chats)[0]) => {
     const otherId = selectedChat?.participants.find((p) => p !== myId);
     return Freelancers.find((f) => f.id === otherId);
   };
 
   const sendMessage = () => {
+    if (!input.trim() || !selectedChat) return;
     const newMessage = {
       id: messages.length,
       senderId: 0,
@@ -34,9 +36,12 @@ export default function ChatPage() {
     );
     setInput("");
   };
+
   return (
     <div className="flex h-[calc(100vh-5.31rem)] bg-[#f1f1f1]" dir="rtl">
-      <div className="w-80 bg-white border-l border-gray-100 flex flex-col shrink-0 shadow-sm">
+      <div
+        className={`${selectedChatId !== null ? "hidden md:flex" : "flex"} w-full md:w-80 bg-white border-l border-gray-100 flex-col shrink-0 shadow-sm`}
+      >
         <div className="p-5 border-b border-gray-100">
           <p className="font-bold text-gray-800 text-xl">المحادثات</p>
         </div>
@@ -83,10 +88,18 @@ export default function ChatPage() {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col">
+      <div
+        className={`${selectedChatId !== null ? "flex" : "hidden md:flex"} flex-1 flex-col`}
+      >
         {selectedChat ? (
           <>
             <div className="bg-white p-4 border-b border-gray-100 flex items-center gap-3 shadow-sm">
+              <button
+                onClick={() => setSelectedChatId(null)}
+                className="md:hidden text-gray-500 hover:text-gray-700 cursor-pointer"
+              >
+                <ArrowRight size={22} />
+              </button>
               <Avatar sx={{ bgcolor: "#1EAAAD", fontWeight: 800 }}>
                 {getOtherParticipant(selectedChat)?.name.charAt(0)}
               </Avatar>
@@ -133,9 +146,7 @@ export default function ChatPage() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => {
-                  if (e.key == "Enter") {
-                    sendMessage();
-                  }
+                  if (e.key === "Enter") sendMessage();
                 }}
                 placeholder="اكتب رسالتك..."
                 className="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1EAAAD] transition"
@@ -149,8 +160,8 @@ export default function ChatPage() {
             </div>
           </>
         ) : (
-          <div className="flex-1 flex flex-col items-center justify-center text-gray-400 gap-3">
-            <MessagesSquare size={120}/>
+          <div className="flex-1 flex-col items-center justify-center text-gray-400 gap-3 hidden md:flex">
+            <MessagesSquare size={120} />
             <p className="text-lg font-medium py-1">اختر محادثة للبدء</p>
             <p className="text-sm">اضغط على أي محادثة من القائمة</p>
           </div>
